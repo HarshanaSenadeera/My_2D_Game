@@ -3,6 +3,9 @@ var idleImageNumber=0;
 var idleAnimationNumber=0;
 var runImageNumber=0;
 var runAnimationNumber=0;
+var backgroundImagePositionX=0;
+var moveBackgroundAnimationId=0;
+var background=document.getElementById("background");
 
 
 /*---------------------------Idle Animation---------------------*/
@@ -50,6 +53,19 @@ function keyCheck(event){
             runAnimationStart();
         }
     }
+
+    if(moveBackgroundAnimationId===0){
+        moveBackgroundAnimationId=setInterval(moveBackground,100);
+    }
 }
 
 
+/*---------------------------Run Animation---------------------*/
+
+function moveBackground(){
+
+    /*document.getElementById("background").style.backgroundPositionX=backgroundImagePositionX+"px";*/
+    background.style.backgroundPositionX=backgroundImagePositionX+"px";
+
+    backgroundImagePositionX=backgroundImagePositionX-60;
+}
