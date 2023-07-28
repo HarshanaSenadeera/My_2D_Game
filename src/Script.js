@@ -1,11 +1,15 @@
 var robot = document.getElementById("robot");
-var idleImageNumber=0;
+var background=document.getElementById("background");
+var idleImageNumber=1;
 var idleAnimationNumber=0;
-var runImageNumber=0;
+var runImageNumber=1;
 var runAnimationNumber=0;
 var backgroundImagePositionX=0;
 var moveBackgroundAnimationId=0;
-var background=document.getElementById("background");
+var jumpAnimationNumber=0;
+var jumpImageNumber=1;
+var robotMarginTop=490;
+
 
 
 /*---------------------------Idle Animation---------------------*/
@@ -43,7 +47,7 @@ function runAnimationStart(){
     clearInterval(idleAnimationNumber);
 }
 
-//enter buttons key catch
+// buttons key catch
 function keyCheck(event){
 
     let keyCode = event.which;
@@ -52,15 +56,26 @@ function keyCheck(event){
         if(runAnimationNumber === 0){
             runAnimationStart();
         }
+
+        if(moveBackgroundAnimationId===0){
+            moveBackgroundAnimationId=setInterval(moveBackground,100);
+        }
     }
 
-    if(moveBackgroundAnimationId===0){
-        moveBackgroundAnimationId=setInterval(moveBackground,100);
+    if(keyCode ===32){
+        if(jumpAnimationNumber===0){
+            jumpAnimationStart();
+        }
+
+        if(moveBackgroundAnimationId===0){
+            moveBackgroundAnimationId=setInterval(moveBackground,100);
+        }
     }
+
 }
 
 
-/*---------------------------Run Animation---------------------*/
+/*---------------------------Background move Animation---------------------*/
 
 function moveBackground(){
 
@@ -68,4 +83,41 @@ function moveBackground(){
     background.style.backgroundPositionX=backgroundImagePositionX+"px";
 
     backgroundImagePositionX=backgroundImagePositionX-60;
+}
+
+/*---------------------------Jump Animation---------------------*/
+
+function jumpAnimation(){
+
+
+    robot.src="resources/jump (" + jumpImageNumber + ").png";
+    jumpImageNumber=jumpImageNumber+1;
+
+
+    //Increase robot jumping height
+    if(jumpImageNumber <=6){
+        robotMarginTop=robotMarginTop-20;
+        robot.style.marginTop=robotMarginTop+"px";
+    }
+
+    //Reduce robot jumping height
+    if(jumpImageNumber >=7){
+        robotMarginTop=robotMarginTop+20;
+        robot.style.marginTop=robotMarginTop+"px";
+    }
+
+    if(jumpImageNumber===11){
+        jumpImageNumber=1;
+        clearInterval(jumpAnimationNumber);
+        jumpAnimationNumber=0;
+        runImageNumber=0;
+        runAnimationStart();
+    }
+}
+
+function jumpAnimationStart(){
+    clearInterval(idleAnimationNumber);
+    runImageNumber=0;
+    clearInterval(runAnimationNumber);
+    jumpAnimationNumber=setInterval(jumpAnimation,200);
 }
