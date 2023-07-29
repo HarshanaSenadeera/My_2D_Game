@@ -1,17 +1,32 @@
 .body{
-    margin: 0px;
+    margin: 0;
 }
 
 .background{
     width: 100%;
-    height: 100vh;
+    height: 97vh;
     background-image: url("resources/Background.jpg");
     background-size: cover;
     background-repeat: repeat-x;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    position: absolute;
 }
 
 .robot{
     position: absolute;
     height: 200px;
-    margin-top: 490px;
+    margin-top: 472px;
+}
+
+.box{
+    width: 100px;
+    height: 100px;
+    /*background-color: red;*/
+    position: absolute;
+    margin-top: 580px;
+    background-image: url("resources/bird.gif");
+    background-size: contain;
+    background-repeat: no-repeat;
+
 }

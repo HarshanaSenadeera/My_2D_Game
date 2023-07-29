@@ -8,7 +8,12 @@ var backgroundImagePositionX=0;
 var moveBackgroundAnimationId=0;
 var jumpAnimationNumber=0;
 var jumpImageNumber=1;
-var robotMarginTop=490;
+var robotMarginTop=472;
+var boxMarginLeft=1400;
+var boxAnimationId=0;
+var box;
+var currentMarginLeft;
+var newMarginLeft;
 
 
 
@@ -60,6 +65,10 @@ function keyCheck(event){
         if(moveBackgroundAnimationId===0){
             moveBackgroundAnimationId=setInterval(moveBackground,100);
         }
+
+        if(boxAnimationId===0){
+            boxAnimationId=setInterval(boxAnimation,100);
+        }
     }
 
     if(keyCode ===32){
@@ -70,6 +79,10 @@ function keyCheck(event){
         if(moveBackgroundAnimationId===0){
             moveBackgroundAnimationId=setInterval(moveBackground,100);
         }
+    }
+
+    if(boxAnimationId===0){
+        boxAnimationId=setInterval(boxAnimation,100);
     }
 
 }
@@ -119,5 +132,92 @@ function jumpAnimationStart(){
     clearInterval(idleAnimationNumber);
     runImageNumber=0;
     clearInterval(runAnimationNumber);
-    jumpAnimationNumber=setInterval(jumpAnimation,200);
+    jumpAnimationNumber=setInterval(jumpAnimation,100);
 }
+
+/*---------------------------Create Obstacles---------------------*/
+
+function createBoxes(){
+
+    for (var i=0; i<=150; i++){
+
+
+    var box = document.createElement("div");
+    box.className="box";
+    document.getElementById("background").appendChild(box);
+    box.style.marginLeft=boxMarginLeft+"px";
+    box.id="box"+i;
+
+    if(i<5){
+        boxMarginLeft=boxMarginLeft+1500;
+    }
+
+        if(i>=5 && i<=10){
+            boxMarginLeft=boxMarginLeft+500;
+        }
+
+        if(i>=10 && i<=15){
+            boxMarginLeft=boxMarginLeft+500;
+        }
+
+        if(i>=15 && i<=25){
+            boxMarginLeft=boxMarginLeft+300;
+        }
+
+        if(i>=25 && i<=30){
+            boxMarginLeft=boxMarginLeft+200;
+        }
+
+        if(i>=30 && i<=40){
+            boxMarginLeft=boxMarginLeft+1500;
+        }
+        if(i>=40 && i<=50){
+            boxMarginLeft=boxMarginLeft+500;
+        }
+        if(i>=50 && i<=55){
+            boxMarginLeft=boxMarginLeft+500;
+        }
+        if(i>=55 && i<=70){
+            boxMarginLeft=boxMarginLeft+700;
+        }
+        if(i>=70 && i<=75){
+            boxMarginLeft=boxMarginLeft+300;
+        }
+
+        if(i>=75 && i<=90){
+            boxMarginLeft=boxMarginLeft+600;
+        }
+        if(i>=90 && i<=100){
+            boxMarginLeft=boxMarginLeft+1500;
+        }
+        if(i>=100 && i<=110){
+            boxMarginLeft=boxMarginLeft+400;
+        }
+        if(i>=110 && i<=115){
+            boxMarginLeft=boxMarginLeft+600;
+        }
+        if(i>=115 && i<=125){
+            boxMarginLeft=boxMarginLeft+300;
+        }
+        if(i>=125 && i<=130){
+            boxMarginLeft=boxMarginLeft+1500;
+        }
+        if(i>=130 && i<=140){
+            boxMarginLeft=boxMarginLeft+400;
+        }
+        if(i>=140 && i<=150){
+            boxMarginLeft=boxMarginLeft+1600;
+        }
+
+    }
+}
+
+function boxAnimation() {
+    for (var i=0;i<150; i++){
+       box =document.getElementById("box"+i);
+        currentMarginLeft=getComputedStyle(box).marginLeft;
+        newMarginLeft=parseInt(currentMarginLeft)-25;
+        box.style.marginLeft=newMarginLeft+"px";
+    }
+}
+
