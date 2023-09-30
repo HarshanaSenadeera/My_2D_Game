@@ -2,6 +2,7 @@
     margin: 0;
 }
 
+/*Create Background*/
 .background{
     width: 100%;
     height: 97vh;
@@ -13,12 +14,14 @@
     position: absolute;
 }
 
+/*Create Robot*/
 .robot{
     position: absolute;
     height: 200px;
     margin-top: 472px;
 }
 
+/*Create Obstacles*/
 .box{
     width: 100px;
     height: 100px;
@@ -26,6 +29,18 @@
     position: absolute;
     margin-top: 580px;
     background-image: url("resources/bird.gif");
+    background-size: contain;
+    background-repeat: no-repeat;
+
+}
+
+.box2{
+    width: 100px;
+    height: 100px;
+    /*background-color: red;*/
+    position: absolute;
+    margin-top: 200px;
+    background-image: url("resources/birds.gif");
     background-size: contain;
     background-repeat: no-repeat;
 
